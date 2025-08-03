@@ -22,6 +22,18 @@ class Tree:
                 self.right_plane = self.insert(self.points[i])
                 self.n = self.points[i]
                 
+        self.n_depth = i # Assume the start of the index is 1
+
+    def delete(self, d_node, d_depth):
+        c_depth = 0
+        p = self.points
+        self.traverse(c_depth+1)
+
+        if c_depth == d_depth:
+            p.pop(d_node) # Remove an index xs
+        else:
+            self.traverse(c_depth+1)
+    
     def traverse(self, node=None, depth=0): # Normal Tree Traversal
         if node is None:
             node = self.n
@@ -30,4 +42,5 @@ class Tree:
             self.traverse(node, depth+1)
         if self.right_plane:
             self.traverse(node, depth+1)
+        
   
